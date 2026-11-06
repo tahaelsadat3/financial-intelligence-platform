@@ -1,62 +1,36 @@
-# Financial Intelligence Platform
+# Enterprise AI-Powered Financial Intelligence Platform
 
-## 1. Project Overview
+A production-grade, ERP-agnostic financial automation microservice engineered for autonomous invoice processing, deterministic accounting validation, and human-in-the-loop audit compliance.
 
-Financial Intelligence Platform is an independent, AI-powered financial intelligence and automation platform designed to operate on top of existing ERP systems.
+---
 
-The platform aims to automate financial operations, improve financial accuracy, enhance decision-making, and provide intelligent financial insights without replacing the company's existing ERP system.
+## Key Architecture & Core Principles
 
-## 2. Core Architecture Principle
+1. **Deterministic Financial Engine (Zero AI Math Hallucinations):** 
+   All math validation, double-entry balanced line generation ($Total\ Debits = Total\ Credits$), and ZATCA 15% VAT compliance are enforced strictly via Python `Decimal` logic.
+2. **Human-Controlled Posting Guardrail (State-Machine Enforced):**
+   AI generates financial entries in `Pending Review` state only. The `PostingEngine` enforces Role-Based Access Control (RBAC) and permanently blocks auto-posting to ERPs without verified human authorization (`UnauthorizedPostingError`).
+3. **ERP-Agnostic Connectivity (Odoo Bridge Implemented):**
+   Standardized `BaseERPConnector` architecture allowing instant integration with Odoo, SAP, Oracle NetSuite, and Microsoft Dynamics.
+4. **Multi-Tenant Schema Support:**
+   Isolated database architecture built for high-throughput enterprise SaaS deployments.
 
-**Maximum Automation – Minimum Human Intervention – Human-Controlled Posting.**
+---
 
-The platform autonomously processes financial data, documents, transactions, validations, reconciliations, and reporting workflows.
+## Directory Structure
 
-Human intervention is primarily required for reviewing, approving, and posting financial transactions.
-
-## 3. Core Components
-
-- Financial Engine
-- AI Intelligence Layer
-- Financial Data Processing
-- AI Agents
-- Workflow & Automation Engine
-- ERP Integration Layer
-- Database & Data Management
-- Security & Governance
-- Financial Dashboards & Reporting
-
-## 4. Operational Workflow
-
-1. Data Ingestion
-2. AI Processing
-3. Validation & Reconciliation
-4. Draft Generation
-5. Human Review
-6. Approval & Posting
-
-## 5. Core Control Principles
-
-- No financial posting without human approval.
-- Every transaction must have a traceable source and audit trail.
-- Errors and exceptions must be identified and explained.
-- Each client must have isolated data, permissions, and policies.
-- Financial calculations must be independently validated by deterministic rules.
-
-## 6. ERP Independence
-
-The platform is designed to integrate with multiple ERP systems, including Odoo, SAP, Oracle, and other compatible systems.
-
-It is not intended to replace the existing ERP infrastructure.
-
-## 7. Development Philosophy
-
-- Modular and scalable architecture.
-- Multi-model AI integration.
-- Open-source and cost-conscious technologies.
-- Secure multi-tenant design.
-- Gradual development through tested and operational modules.
-
-## 8. Initial MVP
-
-The first release will focus on intelligent Accounts Payable processing, including supplier invoice ingestion, data extraction, validation, accounting classification, matching, and draft preparation.
+```text
+financial-intelligence-platform/
+├── src/
+│   ├── api/                 # FastAPI REST Endpoints & Schemas
+│   ├── ai_layer/            # Gemini & LLM Provider Adapters
+│   ├── connectors/          # Odoo & ERP Integration Bridges
+│   ├── core/                # PostingEngine, RBAC & Audit Trails
+│   ├── database/            # Multi-tenant DB Schemas & ORM Models
+│   ├── financial_engine/    # Deterministic Validators & VAT Engine
+│   └── modules/             # Business Logic (Accounts Payable / Invoice Processor)
+├── tests/                   # Automated Pytest Suite (15 Test Cases)
+├── main.py                  # End-to-End Orchestrator Demo
+├── Dockerfile               # Container Environment Specification
+├── docker-compose.yml       # Production Multi-Service Infrastructure
+└── requirements.txt         # Project Dependencies
