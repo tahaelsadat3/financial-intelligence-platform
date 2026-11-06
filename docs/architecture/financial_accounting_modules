@@ -1,0 +1,19 @@
+# Financial Accounting Modules Architecture
+
+This document defines the core Financial Accounting modules that form the baseline of the Financial Intelligence Platform before expanding into Cost Accounting and FP&A.
+
+## Core Financial Accounting Modules
+
+| Module Name | Core Responsibility | ERP Bridge & Validation Function |
+| :--- | :--- | :--- |
+| **General Ledger (GL)** | Chart of Accounts, Journal Entry Drafts, Trial Balance | Enforces double-entry balance, mapping to standard COA |
+| **Accounts Payable (AP)** | Supplier Invoices, PO Matching, Payment Drafts | 4-Way matching, duplicate detection, tax extraction |
+| **Accounts Receivable (AR)** | Customer Invoices, Receipts, Credit Control | Revenue recognition rules, customer ledger reconciliation |
+| **Inventory Accounting** | Stock Valuation, Landed Costs, GR/IR Clearing, COGS | Recalculates FIFO/WAV, GR/IR accrual reconciliation |
+| **Cash & Bank** | Bank Reconciliation, Treasury Flow, Cash Movement | Bank statement auto-reconciliation and variance detection |
+| **Fixed Assets** | Asset Register, Depreciation Schedules | Automated monthly depreciation entry calculation |
+| **Tax & ZATCA Compliance** | VAT Calculation, Tax Ledger, ZATCA Rules | Tax rate validation, gross/net recalculation, audit logs |
+| **Financial Closing** | Period End Control, Closing Adjustments | Trial Balance balance checks, unposted draft escalation |
+
+## Operational Philosophy
+All modules process data autonomously, perform deterministic validation via Python, and present approved drafts for human verification prior to ERP posting.
