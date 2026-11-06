@@ -1,0 +1,24 @@
+# Environment variables and Secrets (حماية المفاتيح والبيانات الحساسة)
+.env
+.env.local
+*.pem
+*.key
+
+# Python Temporary Files (ملفات التشغيل المؤقتة للنظام)
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+
+# Database & Storage (قواعد البيانات المحلية والملفات المؤقتة)
+*.sqlite3
+*.db
+uploads/
+temp/
+
+# IDE & OS Settings (إعدادات بيئة العمل الخاصة بالجهاز)
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
